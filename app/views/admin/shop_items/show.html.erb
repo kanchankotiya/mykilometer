@@ -1,0 +1,16 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Item name:</strong>
+    <%= @shop_item.item_name %>
+  </p>
+
+  <p>
+    <strong>Shop:</strong>
+    <%= @shop_item.item_price %>
+  </p>
+
+  <%= link_to 'Edit', edit_admin_shop_item_path(@shop_item) %> |
+  <%= link_to 'Back', admin_shop_items_path %>
+</div>  

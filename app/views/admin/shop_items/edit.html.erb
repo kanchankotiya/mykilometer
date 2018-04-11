@@ -1,0 +1,15 @@
+<div class="container py-3 mt-5">
+  <div class="row">
+    <div class="mx-auto col-sm-6">
+      <!-- form user info -->
+      <div class="card">
+        <div class="card-header">
+          <h4 class="mb-0">Editing Shop Item</h4> 
+          <%= link_to 'Show', admin_shop_item_path(@shop_item), class: "float-right btn btn-outline-primary show_btn" %>
+        </div>
+        <%= render 'form', shop_item: @shop_item %>
+      </div>
+    </div>
+  </div>
+</div>        
+

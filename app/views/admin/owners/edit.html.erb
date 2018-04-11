@@ -1,0 +1,16 @@
+<div class="container py-3 mt-5">
+  <div class="row">
+    <div class="mx-auto col-sm-6">
+      <!-- form user info -->
+      <div class="card">
+        <div class="card-header">
+          <h4 class="mb-0">Editing Owner</h4>
+         <%= link_to 'Show',  admin_owner_path(@owner), class: " btn btn-outline-primary pull-right  show_btn" %>
+        </div>
+         <%= render 'form', owner: @owner %>
+      </div>
+    </div>
+  </div>
+</div>         
+
+

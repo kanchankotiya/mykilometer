@@ -1,0 +1,29 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Business Types</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Business icon</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @business_types.each do |business_type| %>
+          <tr>
+            <td><%= business_type.name %></td>
+            <td><i class= "<%= business_type.business_icon %>"></i></td>
+            <td><%= link_to 'Show', admin_business_type_path(business_type) %></td>
+            <td><%= link_to 'Edit', edit_admin_business_type_path(business_type)%></td>
+            <td><%= link_to 'Destroy', admin_business_type_path(business_type), method: :delete, data: { confirm: 'Are you sure?'} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div> 
+  <%= link_to 'New Business Type', new_admin_business_type_path, class: "btn btn-outline-primary" %>
+</div>  

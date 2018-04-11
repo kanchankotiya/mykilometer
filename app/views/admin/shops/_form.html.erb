@@ -1,0 +1,69 @@
+<div class="card-body">
+  <%= form_with(model:[:admin, shop],local:true) do |form| %>
+    <% if shop.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
+
+        <ul>
+        <% shop.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group row">
+      <%= form.label :name,  class: "col-lg-3 col-form-label form-control-label"  %>
+      <div class="col-lg-9">
+        <%= form.text_field :name, id: :shop_name, class: "form-control" %>
+      </div>  
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :address, class: "col-lg-3 col-form-label form-control-label" %>
+      <div class="col-lg-9">
+        <%= form.text_field :address, id: :shop_address, class: "form-control" %>
+      </div>  
+    </div>
+
+    <!-- <div class="field">
+      <%#= form.label :latitude %>
+      <%#= form.text_field :latitude, id: :shop_latitude %>
+    </div>
+
+    <div class="field">
+      <%#= form.label :longitude %>
+      <%#= form.text_field :longitude, id: :shop_longitude %>
+    </div> -->
+
+    <div class="form-group row">
+      <%= form.label :cover_image,class: "col-lg-3 col-form-label form-control-label" %>
+      <div class="col-lg-9">
+        <%= form.file_field :cover_image, id: :shop_cover_image %>
+      </div>  
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :owner_id,class: "col-lg-3 col-form-label form-control-label"  %>
+      <div class="col-lg-9">
+        <%= form.text_field :owner_id, id: :shop_owner_id, class: "form-control" %>
+      </div>  
+    </div>
+
+    
+    <div class="form-group row">
+      <%= form.label :business_type_id,class: "col-lg-3 col-form-label form-control-label" %>
+      <div class="col-lg-9">
+        <%= form.text_field :business_type_id, id: :shop_business_type_id, class: "form-control" %>
+      </div>  
+    </div>
+
+    <div class="form-group row">
+      <label class="col-lg-3 col-form-label form-control-label"></label>
+      <div class="col-lg-9 actions">
+        <%= link_to 'Back', admin_shops_path, class: "btn btn-secondary" %>
+        <%= form.submit class: "btn btn-primary", value: "Create Owner" %>
+      </div>
+    </div>
+  <% end %>
+</div>  

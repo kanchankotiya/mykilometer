@@ -1,0 +1,41 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @owner.name %>
+  </p>
+
+  <p>
+    <strong>Contact1:</strong>
+    <%= @owner.contact1 %>
+  </p>
+
+  <p>
+    <strong>Contact2:</strong>
+    <%= @owner.contact2 %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @owner.email %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @owner.address %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= @owner.city %>
+  </p>
+
+  <p>
+    <strong>State:</strong>
+    <%= @owner.state %>
+  </p>
+
+  <%= link_to 'Edit', edit_admin_owner_path(@owner) %> |
+  <%= link_to 'Back', admin_owners_path %>
+</div>    

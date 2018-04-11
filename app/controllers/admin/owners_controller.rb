@@ -18,7 +18,8 @@ class Admin::OwnersController < ApplicationController
   end
 
   # GET /owners/1/edit
-  def edit;end
+  def edit
+  end
 
   # POST /owners
   # POST /owners.json
@@ -68,6 +69,6 @@ class Admin::OwnersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def owner_params
-      params.require(:owner).permit(:name, :contact1, :contact2, :email, :address, :city, :state)
+      params.require(:owner).permit(:name, :contact1, :contact2, :email, :address, :city, :state, shops_attributes: [:id, :name, :address, :latitude, :longitude, :cover_image, :owner_id, :business_type_id, :_destroy])
     end
 end

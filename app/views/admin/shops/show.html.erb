@@ -23,7 +23,7 @@
 
   <p>
     <strong>Cover image:</strong>
-    <%= @shop.cover_image %>
+    <%= image_tag @shop.cover_image, style: "height:50px; width:50px;"  %>
   </p>
 
   <p>
@@ -35,7 +35,42 @@
     <strong>Business type:</strong>
     <%= @shop.business_type %>
   </p>
-
+  
   <%= link_to 'Edit', edit_admin_shop_path(@shop) %> |
   <%= link_to 'Back', admin_shops_path %>
 </div>  
+
+<p id="demo">Click the button to get your coordinates:</p>
+<button onclick="getLocation()">Try It</button>
+<script>
+  var x=document.getElementById("demo");
+  var lat;
+  var long;
+  function getLocation()
+  {
+    if (navigator.geolocation)
+    {
+      navigator.geolocation.getCurrentPosition(showPosition);
+
+    }
+    else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+  function showPosition(position)
+  {
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    x.innerHTML="Latitude: " + lat +
+    "<br>Longitude: " + long;
+
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:3000/locations',
+      data: { lat: lat, long: long },
+      contentType: 'application/json',
+      dataType: 'json'
+
+    });
+  }
+</script>
+
+

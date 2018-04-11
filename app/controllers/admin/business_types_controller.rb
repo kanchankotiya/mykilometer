@@ -9,7 +9,8 @@ class Admin::BusinessTypesController < ApplicationController
 
   # GET /business_types/1
   # GET /business_types/1.json
-  def show;end
+  def show
+  end
 
   # GET /business_types/new
   def new
@@ -17,7 +18,8 @@ class Admin::BusinessTypesController < ApplicationController
   end
 
   # GET /business_types/1/edit
-  def edit;end
+  def edit
+  end
 
   # POST /business_types
   # POST /business_types.json

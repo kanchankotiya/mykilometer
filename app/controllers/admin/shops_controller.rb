@@ -18,7 +18,8 @@ class Admin::ShopsController < ApplicationController
   end
 
   # GET /shops/1/edit
-  def edit;end
+  def edit
+  end
 
   # POST /shops
   # POST /shops.json

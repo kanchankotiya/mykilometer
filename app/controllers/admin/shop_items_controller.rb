@@ -9,7 +9,8 @@ class Admin::ShopItemsController < ApplicationController
 
   # GET /shop_items/1
   # GET /shop_items/1.json
-  def show;end
+  def show
+  end
 
   # GET /shop_items/new
   def new
@@ -17,7 +18,8 @@ class Admin::ShopItemsController < ApplicationController
   end
 
   # GET /shop_items/1/edit
-  def edit;end
+  def edit
+  end
 
   # POST /shop_items
   # POST /shop_items.json

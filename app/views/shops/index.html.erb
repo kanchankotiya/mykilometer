@@ -1,0 +1,40 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Shops</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Cover img</th>
+          
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <h2 class="text-center"><%= @business_type.name %><h2>
+        <% @shops.each do |shop| %>
+          <tr>
+          
+              <%= link_to business_type_shop_path(@business_type, shop) do %>
+               
+               <td><%= shop.name %></td>
+               <td><%= shop.address %></td>
+               <td><%= shop.latitude %></td>
+               <td><%= shop.longitude %></td>
+               <td><%= image_tag shop.cover_image, style: "height:50px; width:50px;" %></td>
+              <%end%>
+            <td><%= link_to 'Show', business_type_shop_path(@business_type,shop) %></td>
+           
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>  

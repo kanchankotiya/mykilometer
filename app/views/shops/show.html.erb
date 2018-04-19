@@ -1,0 +1,71 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+ <div class="section">
+    <div class="details mt-3 ml-3">
+      <h6><%= @shop.name %></h6> 
+      <h6><%= @shop.address %></h6>
+      <h6><%= @shop.latitude %></h6> 
+      <h6><%= @shop.longitude %></h6> 
+    </div>
+    <div class="shop-img float-right ">
+      <%= image_tag @shop.cover_image %>
+    </div>
+  </div>
+</div>  
+<div class="container mt-5">
+  <div class="row">
+    <% @shops.each do |shop| %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag  shop.cover_image,class: "card-img-top" %>
+      
+          <div class="card-body">
+            <h5 class="card-title"><%= shop.name %></h5>
+            <p class="card-text"><%= shop.address %></p>
+            <a href="#" ><%= @shop.longitude %></a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>  
+  <%= link_to 'Back', business_type_shops_path(@shop.business_type) %>
+</div>  
+
+<!-- <p id="demo">Click the button to get your coordinates:</p>
+<button onclick="getLocation()">Try It</button>
+<script>
+  var x=document.getElementById("demo");
+  var lat;
+  var long;
+  function getLocation()
+  {
+    if (navigator.geolocation)
+    {
+      navigator.geolocation.getCurrentPosition(showPosition);
+
+    }
+    else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+  function showPosition(position)
+  {
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    x.innerHTML="Latitude: " + lat +
+    "<br>Longitude: " + long;
+
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:3000/locations',
+      data: { lat: lat, long: long },
+      contentType: 'application/json',
+      dataType: 'json'
+
+    });
+  }
+</script>
+
+
+ -->
+
+ <!-- @shops.map {|shop| shop.name } -->

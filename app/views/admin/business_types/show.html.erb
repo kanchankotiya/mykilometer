@@ -8,7 +8,7 @@
 
   <p>
     <strong>Business icon:</strong>
-    <i class= "<%= @business_type.business_icon %>"></i>
+   <%= image_tag @business_type.business_icon, width:"100px"  %>
   </p>
 
   <%= link_to 'Edit', edit_admin_business_type_path(@business_type) %> |

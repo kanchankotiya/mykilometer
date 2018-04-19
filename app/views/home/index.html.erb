@@ -1,9 +1,27 @@
-<div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
-</div>
+<main role="main">
+  <div class="jumbotron">
+    <h1 class="display-4">Hello, world!</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
+  </div> 
+  <div class="container marketing">
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <% @business_types.each do |bt|%>
+        <div class="col-lg-4">
+          <%= link_to business_type_shops_path(bt) do %>
+            <%= image_tag bt.business_icon, class: "rounded-circle", alt: "Generic placeholder image", width: "140",  height: "140" %>
+            <h2><%= bt.name.upcase%></h2>
+          <% end %>  
+   
+          <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+        </div><!-- /.col-lg-4 -->
+      <% end %>
+    </div><!-- /.row -->
+  </div>  
+</main>
+

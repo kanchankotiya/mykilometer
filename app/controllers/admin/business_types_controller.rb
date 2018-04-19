@@ -5,6 +5,8 @@ class Admin::BusinessTypesController < ApplicationController
   # GET /business_types.json
   def index
     @business_types = BusinessType.all
+    
+
   end
 
   # GET /business_types/1

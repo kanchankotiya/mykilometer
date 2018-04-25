@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+<div class="container mb-5">
+  <div class="card">
+    <div class="card-body">
+      <h3>
+        <%= @event.name %>
+      </h3>
+
+        <%= image_tag @event.baneer_image%>
+      
+
+      <p class="mt-5">
+        <h4>Description:</h4>
+        <%= @event.description.html_safe %>
+      </p>
+
+      <p>
+        <strong>Start datetime:</strong>
+        <%= @event.start_datetime %>
+      </p>
+
+      <p>
+        <strong>End datetime:</strong>
+        <%= @event.end_datetime %>
+      </p>
+
+      <p>
+        <strong>Vanue:</strong>
+        <%= @event.vanue %>
+      </p>
+
+      <p>
+        <strong>Address:</strong>
+        <%= @event.address %>
+      </p>
+
+      <p>
+        <strong>Latitude:</strong>
+        <%= @event.latitude %>
+      </p>
+
+      <p>
+        <strong>Longitude:</strong>
+        <%= @event.longitude %>
+      </p>
+      <%= link_to 'Edit', edit_vendor_event_path(@event) ,class: "btn btn-primary" %> |
+      <%= link_to 'Back', vendor_events_path  ,class: "btn btn-primary"%>
+    </div>  
+  </div>  
+</div>  
+<div class="container mt-5">
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag  event.baneer_image,class: "card-img-top" %>
+        
+          <div class="card-body">
+            <h5 class="card-title"><%= event.name %></h5>
+            <p class="card-text"><%= event.address %></p>
+            <a href="#" ><%= @event.longitude %></a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>  
+</div>

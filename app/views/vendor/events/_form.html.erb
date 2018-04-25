@@ -1,0 +1,169 @@
+<%= form_with(model: [:vendor,event], local: true, class: "form" ) do |f|%>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      <h4>Event Information</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, id: :event_name,class: "form-control"%>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :baneer_image %><br>
+            <%= f.file_field :baneer_image, id: :event_baneer_image %>
+          </div>
+        </div>  
+      </div>
+  
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, id: :event_description, class: "ckeditor " %>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :start_datetime %><br>
+            <%= f.datetime_select :start_datetime, id: :event_start_datetime,class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :end_datetime %><br>
+            <%= f.datetime_select :end_datetime, id: :event_end_datetime, class: "form-control"%>
+          </div>
+        </div>  
+      </div>  
+    </div> 
+  </div> 
+  <div class="card mt-5">  
+    <div class="card-header bg-secondary ">
+      <h4 class="text-white">Addres Information</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :vanue %>
+            <%= f.text_field :vanue, id: :event_vanue, class: "form-control"%>
+          </div>
+        </div>  
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :address %>
+            <%= f.text_field :address, id: :event_address, class: "form-control", id: "autocomplete", onFocus: "geolocate()" %>
+          </div>
+        </div>  
+      </div>
+      <div class="form-group">
+        <%= f.label :event_type_id %>
+        <%= f.select :event_type_id, options_for_select(EventType.all.collect{|et| [et.name, et.id]}, (f.object.try(:event_type_id))), {class: "form-control "} %>
+      </div>
+    </div>  
+  </div>  
+
+  <div id="event_ticket">
+    <%= f.fields_for :event_tickets do |et| %> 
+      <%= render 'event_ticket_fields', f: et %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association f, :event_tickets, class: "btn btn-primary mt-5" do %>
+        <i class="fa fa-plus">Add Event Ticket</i>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="actions form-group mt-5">
+    <%= f.submit class: "btn btn-secondary" %>
+  </div>
+     
+<% end %>
+<script>
+      // This example displays an address form, using the autocomplete feature
+      // of the Google Places API to help users fill in the information.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var placeSearch, autocomplete;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+          {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+        lat = place.geometry.location.lat();
+        long = place.geometry.location.lng();
+
+        $("#near_loc_lat").val(lat);
+        $("#near_loc_lng").val(long);
+        for (var component in componentForm) {
+          document.getElementById(component).value = '';
+          document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            document.getElementById(addressType).value = val;
+          }
+        }
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZO1fKh_fnrQphRnEy7knxPUcOjKQWYPU&libraries=places&callback=initAutocomplete"
+async defer></script>

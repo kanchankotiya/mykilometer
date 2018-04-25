@@ -1,0 +1,15 @@
+<div class="jumbotron">
+  <h1>Editing Event</h1>
+  <div class="btn-group">
+    <%= link_to 'Show', vendor_event_path(@event), class: "btn btn-primary" %> 
+    <%= link_to 'Back',  vendor_events_path,class: "btn btn-primary" %>
+  </div>
+</div>  
+<div class="conatiner"> 
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <%= render 'form', event: @event %>
+    </div>
+  </div>
+</div>      
+

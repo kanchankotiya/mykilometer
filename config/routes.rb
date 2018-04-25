@@ -2,6 +2,15 @@ Rails.application.routes.draw do
  
   
  
+  devise_for :vendors, controllers: {
+    sessions: 'vendors/sessions'
+  }
+
+  namespace :vendor do
+    resources :events
+    resources :event_types 
+  end
+
   resources :users
   get 'home/index'
   

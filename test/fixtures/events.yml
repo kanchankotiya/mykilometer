@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  baneer_image: MyString
+  description: MyText
+  start_datetime: 2018-04-25 10:59:54
+  end_datetime: 2018-04-25 10:59:54
+  vanue: MyString
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+  event_type: one
+
+two:
+  name: MyString
+  baneer_image: MyString
+  description: MyText
+  start_datetime: 2018-04-25 10:59:54
+  end_datetime: 2018-04-25 10:59:54
+  vanue: MyString
+  address: MyString
+  latitude: 1.5
+  longitude: 1.5
+  event_type: two

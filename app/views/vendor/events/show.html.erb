@@ -45,23 +45,75 @@
       </p>
       <%= link_to 'Edit', edit_vendor_event_path(@event) ,class: "btn btn-primary" %> |
       <%= link_to 'Back', vendor_events_path  ,class: "btn btn-primary"%>
+      <% if vendor_signed_in? %>
+       <%#= link_to "invite", new_vendor_invitation_path, class: "btn btn-success"%>
+       <%= link_to "Invite #{@event.id}", new_vendor_invitation_path(email: @event.name, event: @event), class: "btn btn-xs btn-primary" %>
+       <% else %>
+       <%= link_to "signout", destroy_vendor_session_path, method: :delete %>
+      <% end %>
     </div>  
   </div>  
 </div>  
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="row">
     <% @events.each do |event| %>
       <div class="col-md-4">
         <div class="card" style="width: 18rem;">
-          <%= image_tag  event.baneer_image,class: "card-img-top" %>
-        
+          <%= image_tag  event.baneer_image,class: "card-img-top", width: "200px;" %>
           <div class="card-body">
             <h5 class="card-title"><%= event.name %></h5>
             <p class="card-text"><%= event.address %></p>
-            <a href="#" ><%= @event.longitude %></a>
           </div>
         </div>
       </div>
     <% end %>
   </div>  
 </div>
+
+<div id="map">
+  
+</div>
+
+<style>
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+</style>
+<!-- <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFoN8zVVlAbl2aKVw_uF8WS7fI5XWPr4M">
+</script> -->
+ <script src="http://maps.google.com/maps/api/js?key=AIzaSyDFoN8zVVlAbl2aKVw_uF8WS7fI5XWPr4M" 
+          type="text/javascript"></script>
+
+<script type="text/javascript">
+    var locations = [];
+
+    <% @events.each do |event| %>
+      locations.push(["<%= event.name %>", <%= event.latitude %>, <%= event.longitude %>])
+    <% end %>
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: new google.maps.LatLng(<%= @event.latitude %>, <%= @event.longitude %>),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>

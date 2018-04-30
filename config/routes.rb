@@ -1,11 +1,13 @@
 Rails.application.routes.draw do 
  
-  
- 
-  devise_for :vendors, controllers: {
-    sessions: 'vendors/sessions'
-  }
 
+  devise_for :vendors, controllers: {
+    sessions: 'vendors/sessions',
+    invitations: 'vendors/invitations'
+  }
+  
+  
+  
   namespace :vendor do
     resources :events
     resources :event_types 

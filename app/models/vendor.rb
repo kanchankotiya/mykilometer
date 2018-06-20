@@ -3,7 +3,8 @@ class Vendor < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :confirmable , :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  belongs_to :event
+  has_many :events
+  
 
   ROLES = %w[admin staff].freeze
 
@@ -14,7 +15,4 @@ class Vendor < ApplicationRecord
   def staff?  
     self.role == "staff"   
   end
-
- 
-
 end

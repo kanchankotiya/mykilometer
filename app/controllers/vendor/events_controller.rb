@@ -2,13 +2,12 @@ class Vendor::EventsController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_vendor!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /events
   # GET /events.json
 
   def index
     @events = Event.all
-    
   end
 
   # GET /events/1

@@ -8,7 +8,10 @@ class ApplicationController < ActionController::Base
 
 
   protected
-
+  
+  def authenticate_inviter!
+    authenticate_vendor!(:force => true)
+  end
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:email, :event])
   end
